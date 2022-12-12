@@ -2,15 +2,15 @@
     <div id="app">
         <nav class="navbar navbar-expand navbar-dark bg-dark">
             <a href="#"
-               class="navbar-brand">bezKoder</a>
+               class="navbar-brand">Auracar</a>
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="/tutorials"
-                       class="nav-link">Tutorials</a>
+                    <a href="/cars"
+                       class="nav-link">Listado</a>
                 </li>
                 <li class="nav-item">
                     <a href="/add"
-                       class="nav-link">Add</a>
+                       class="nav-link">Añadir</a>
                 </li>
             </div>
         </nav>

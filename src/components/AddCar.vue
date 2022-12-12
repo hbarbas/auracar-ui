@@ -8,7 +8,7 @@
                     class="form-control"
                     id="title"
                     required
-                    v-model="tutorial.id"
+                    v-model="car.id"
                     name="title"
                 />
             </div>
@@ -19,7 +19,7 @@
                     class="form-control"
                     id="description"
                     required
-                    v-model="tutorial.model"
+                    v-model="car.model"
                     name="description"
                 />
             </div>
@@ -30,7 +30,7 @@
                     class="form-control"
                     id="description"
                     required
-                    v-model="tutorial.carRegistration"
+                    v-model="car.carRegistration"
                     name="description"
                 />
             </div>
@@ -41,7 +41,7 @@
                     class="form-control"
                     id="description"
                     required
-                    v-model="tutorial.entry"
+                    v-model="car.entry"
                     name="description"
                 />
             </div>
@@ -52,12 +52,12 @@
                     class="form-control"
                     id="description"
                     required
-                    v-model="tutorial.exit"
+                    v-model="car.exit"
                     name="description"
                 />
             </div>
 
-            <button @click="saveTutorial"
+            <button @click="saveCar"
                     class="btn btn-success">Submit
             </button>
         </div>
@@ -65,7 +65,7 @@
         <div v-else>
             <h4>You submitted successfully!</h4>
             <button class="btn btn-success"
-                    @click="newTutorial">Add
+                    @click="newCar">Add
             </button>
         </div>
     </div>
@@ -73,12 +73,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TutorialDataService from "@/services/TutorialDataService";
-import Tutorial from "@/types/Tutorial";
+import CarDataService from "@/services/CarDataService";
+import Car from "@/types/Car";
 
 @Component
-export default class AddTutorial extends Vue {
-    private tutorial : Tutorial = {
+export default class AddCar extends Vue {
+    private car : Car = {
         id : "",
         carRegistration : "",
         model : "",
@@ -88,18 +88,18 @@ export default class AddTutorial extends Vue {
     };
     private submitted : boolean = false;
 
-    saveTutorial() {
+    saveCar() {
         let data = {
-            id : this.tutorial.id,
-            model : this.tutorial.model,
-            carRegistration : this.tutorial.carRegistration,
-            entry : this.tutorial.entry,
-            exit : this.tutorial.exit,
+            id : this.car.id,
+            model : this.car.model,
+            carRegistration : this.car.carRegistration,
+            entry : this.car.entry,
+            exit : this.car.exit,
             active : true,
         };
-        TutorialDataService.create( data )
+        CarDataService.create( data )
         .then( ( response ) => {
-            this.tutorial.id = response.data.id;
+            this.car.id = response.data.id;
             console.log( response.data );
             this.submitted = true;
         } )
@@ -108,9 +108,9 @@ export default class AddTutorial extends Vue {
         } );
     }
 
-    newTutorial() {
+    newCar() {
         this.submitted = false;
-        this.tutorial = {} as Tutorial;
+        this.car = {} as Car;
     }
 }
 </script>

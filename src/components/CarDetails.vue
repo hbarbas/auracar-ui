@@ -1,7 +1,7 @@
 <template>
-    <div v-if="currentTutorial.id"
+    <div v-if="currentCar.id"
          class="edit-form">
-        <h4>Tutorial</h4>
+        <h4>Car</h4>
         <form>
             <div class="form-group">
                 <label for="title">Id</label>
@@ -9,7 +9,7 @@
                     type="text"
                     class="form-control"
                     id="title"
-                    v-model="currentTutorial.id"
+                    v-model="currentCar.id"
                 />
             </div>
             <div class="form-group">
@@ -18,7 +18,7 @@
                     type="text"
                     class="form-control"
                     id="description"
-                    v-model="currentTutorial.model"
+                    v-model="currentCar.model"
                 />
             </div>
             <div class="form-group">
@@ -27,7 +27,7 @@
                     type="text"
                     class="form-control"
                     id="description"
-                    v-model="currentTutorial.carRegistration"
+                    v-model="currentCar.carRegistration"
                 />
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@
                     type="text"
                     class="form-control"
                     id="description"
-                    v-model="currentTutorial.entry"
+                    v-model="currentCar.entry"
                 />
             </div>
             <div class="form-group">
@@ -45,18 +45,18 @@
                     type="text"
                     class="form-control"
                     id="description"
-                    v-model="currentTutorial.exit"
+                    v-model="currentCar.exit"
                 />
             </div>
             <div class="form-group">
                 <label><strong>Active:</strong></label>
-                {{ currentTutorial.active ? "Si" : "No" }}
+                {{ currentCar.active ? "Si" : "No" }}
             </div>
         </form>
 
         <button
             class="badge badge-primary mr-2"
-            v-if="currentTutorial.active"
+            v-if="currentCar.active"
             @click="updatePublished(false)"
         >
             UnPublish
@@ -70,13 +70,13 @@
         </button>
 
         <button class="badge badge-danger mr-2"
-                @click="deleteTutorial">
+                @click="deleteCar">
             Delete
         </button>
 
         <button type="submit"
                 class="badge badge-success"
-                @click="updateTutorial">
+                @click="updateCar">
             Update
         </button>
         <p>{{ message }}</p>
@@ -84,24 +84,24 @@
 
     <div v-else>
         <br/>
-        <p>Please click on a Tutorial...</p>
+        <p>Please click on a Car...</p>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TutorialDataService from "@/services/TutorialDataService";
-import Tutorial from "@/types/Tutorial";
+import CarDataService from "@/services/CarDataService";
+import Car from "@/types/Car";
 
 @Component
-export default class TutorialDetails extends Vue {
-    private currentTutorial = {} as Tutorial;
+export default class CarDetails extends Vue {
+    private currentCar = {} as Car;
     private message : string = "";
 
-    getTutorial( id : string ) {
-        TutorialDataService.get( id )
+    getCar( id : string ) {
+        CarDataService.get( id )
         .then( ( response ) => {
-            this.currentTutorial = response.data;
+            this.currentCar = response.data;
             console.log( response.data );
         } )
         .catch( ( e ) => {
@@ -111,16 +111,16 @@ export default class TutorialDetails extends Vue {
 
     updatePublished( status : boolean ) {
         let data = {
-            id : this.currentTutorial.id,
-            model : this.currentTutorial.model,
-            carRegistration : this.currentTutorial.carRegistration,
-            entry : this.currentTutorial.entry,
-            exit : this.currentTutorial.exit,
+            id : this.currentCar.id,
+            model : this.currentCar.model,
+            carRegistration : this.currentCar.carRegistration,
+            entry : this.currentCar.entry,
+            exit : this.currentCar.exit,
             active : status,
         };
-        TutorialDataService.update( data )
+        CarDataService.update( data )
         .then( ( response ) => {
-            this.currentTutorial.active = status;
+            this.currentCar.active = status;
             console.log( response.data );
         } )
         .catch( ( e ) => {
@@ -128,22 +128,22 @@ export default class TutorialDetails extends Vue {
         } );
     }
 
-    updateTutorial() {
-        TutorialDataService.update( this.currentTutorial )
+    updateCar() {
+        CarDataService.update( this.currentCar )
         .then( ( response ) => {
             console.log( response.data );
-            this.message = "The tutorial was updated successfully!";
+            this.message = "The car was updated successfully!";
         } )
         .catch( ( e ) => {
             console.log( e );
         } );
     }
 
-    deleteTutorial() {
-        TutorialDataService.delete( this.currentTutorial.id )
+    deleteCar() {
+        CarDataService.delete( this.currentCar.id )
         .then( ( response ) => {
             console.log( response.data );
-            this.$router.push( { name : "tutorials" } );
+            this.$router.push( { name : "cars" } );
         } )
         .catch( ( e ) => {
             console.log( e );
@@ -152,7 +152,7 @@ export default class TutorialDetails extends Vue {
 
     mounted() {
         this.message = "";
-        this.getTutorial( this.$route.params.id );
+        this.getCar( this.$route.params.id );
     }
 }
 </script>

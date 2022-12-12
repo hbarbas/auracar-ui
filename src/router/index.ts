@@ -5,19 +5,19 @@ Vue.use( VueRouter );
 const routes : Array<RouteConfig> = [
   {
     path : "/",
-    alias : "/tutorials",
-    name : "tutorials",
-    component : () => import("../components/TutorialsList.vue")
+    alias : "/cars",
+    name : "cars",
+    component : () => import("../components/CarsList.vue")
   },
   {
-    path : "/tutorials/:id",
-    name : "tutorial-details",
-    component : () => import("../components/TutorialDetails.vue")
+    path : "/cars/:id",
+    name : "cars-details",
+    component : () => import("../components/CarDetails.vue")
   },
   {
     path : "/add",
     name : "add",
-    component : () => import("../components/AddTutorial.vue")
+    component : () => import("../components/AddCar.vue")
   }
 ];
 const router = new VueRouter( {
