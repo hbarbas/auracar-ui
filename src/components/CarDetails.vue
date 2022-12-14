@@ -114,9 +114,9 @@ export default class CarDetails extends Vue {
             id : this.currentCar.id,
             model : this.currentCar.model,
             carRegistration : this.currentCar.carRegistration,
-            entry : this.currentCar.entry,
-            exit : this.currentCar.exit,
-            active : status,
+            // entry : this.currentCar.entry,
+            // exit : this.currentCar.exit,
+            active : status
         };
         CarDataService.update( data )
         .then( ( response ) => {

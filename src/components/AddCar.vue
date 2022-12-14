@@ -2,70 +2,47 @@
     <div class="submit-form">
         <div v-if="!submitted">
             <div class="form-group">
-                <label for="title">Id</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="title"
-                    required
-                    v-model="car.id"
-                    name="title"
-                />
-            </div>
-
-            <div class="form-group">
-                <label for="description">Model</label>
+                <label for="modelo">MODELO</label>
                 <input
                     class="form-control"
-                    id="description"
+                    id="modelo"
                     required
                     v-model="car.model"
-                    name="description"
+                    name="modelo"
                 />
             </div>
 
             <div class="form-group">
-                <label for="description">Car Registration</label>
+                <label for="matricula">MATRÍCULA</label>
                 <input
                     class="form-control"
-                    id="description"
+                    id="matricula"
                     required
                     v-model="car.carRegistration"
-                    name="description"
+                    name="matricula"
                 />
             </div>
 
             <div class="form-group">
-                <label for="description">Entry</label>
+                <label for="minutos">MINUTOS OPERACIÓN</label>
                 <input
                     class="form-control"
-                    id="description"
+                    id="minutos"
                     required
-                    v-model="car.entry"
-                    name="description"
+                    v-model="car.countdown"
+                    name="minutos"
                 />
             </div>
-
-            <div class="form-group">
-                <label for="description">Exit</label>
-                <input
-                    class="form-control"
-                    id="description"
-                    required
-                    v-model="car.exit"
-                    name="description"
-                />
-            </div>
-
+            <br/>
             <button @click="saveCar"
-                    class="btn btn-success">Submit
+                    class="btn btn-success">Guardar
             </button>
         </div>
 
         <div v-else>
-            <h4>You submitted successfully!</h4>
+            <h4>Guardado con éxito!</h4>
             <button class="btn btn-success"
-                    @click="newCar">Add
+                    @click="newCar">Nuevo
             </button>
         </div>
     </div>
@@ -80,11 +57,13 @@ import Car from "@/types/Car";
 export default class AddCar extends Vue {
     private car : Car = {
         id : "",
-        carRegistration : "",
         model : "",
-        entry : "",
-        exit : "",
-        active : false,
+        carRegistration : "",
+        arrivalDay : "",
+        entryTime : "",
+        exitTime : "",
+        countdown : "",
+        active : true,
     };
     private submitted : boolean = false;
 
@@ -93,9 +72,11 @@ export default class AddCar extends Vue {
             id : this.car.id,
             model : this.car.model,
             carRegistration : this.car.carRegistration,
-            entry : this.car.entry,
-            exit : this.car.exit,
-            active : true,
+            arrivalDay : this.car.arrivalDay,
+            entryTime : this.car.entryTime,
+            exitTime : this.car.exitTime,
+            countdown : this.car.countdown,
+            active : this.car.active,
         };
         CarDataService.create( data )
         .then( ( response ) => {

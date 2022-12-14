@@ -5,5 +5,6 @@ export default interface Car {
   arrivalDay : string;
   entryTime : string;
   exitTime : string;
+  countdown : string;
   active : boolean;
 }

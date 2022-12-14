@@ -1,36 +1,37 @@
 <template>
     <el-table
         :data="cars"
-        style="width: 100%">
+        border
+        style="max-width: 100%"
+        :row-class-name="tableRowClassName">
+        <!--        :header-row-class-name="headerRowClassName">-->
         <el-table-column
             prop="id"
-            label="Id"
-            width="180">
+            label="ID">
         </el-table-column>
         <el-table-column
             prop="model"
-            label="Modelo"
-            width="180">
+            label="MODELO">
         </el-table-column>
         <el-table-column
             prop="carRegistration"
-            label="Matricula"
-            width="180">
+            label="MATRÍCULA">
         </el-table-column>
         <el-table-column
             prop="arrivalDay"
-            label="Día de entrada"
-            width="190">
+            label="DÍA DE ENTRADA">
         </el-table-column>
         <el-table-column
             prop="entryTime"
-            label="Hora de entrada"
-            width="190">
+            label="HORA DE ENTRADA">
         </el-table-column>
         <el-table-column
             prop="exitTime"
-            label="Hora de salida"
-            width="190">
+            label="HORA DE SALIDA">
+        </el-table-column>
+        <el-table-column
+            prop="countdown"
+            label="MINUTOS RESTANTES">
         </el-table-column>
     </el-table>
     <!--    <div class="list row">
@@ -122,9 +123,10 @@ import Car from "@/types/Car";
 @Component
 export default class CarsList extends Vue {
     private cars : Car[] = [];
-    private currentCar = {} as Car;
-    private currentIndex : number = - 1;
-    private title : string = "";
+
+    /*    private currentCar = {} as Car;
+        private currentIndex : number = - 1;
+        private title : string = "";*/
 
     retrieveCars() {
         CarDataService.getAll()
@@ -137,6 +139,22 @@ export default class CarsList extends Vue {
         } );
     }
 
+    tableRowClassName( row : any ) {
+        const countdown = row.row.countdown;
+        if( countdown < 30 && countdown > 10 ) {
+            return "warning-row";
+        }
+        else if( countdown < 10 ) {
+            return "danger-row";
+        }
+        else {
+            return "success-row";
+        }
+    }
+
+    // headerRowClassName(row: any) {
+    //     return 'el-table header-row';
+    // }
     /*    refreshList() {
             this.retrieveCars();
             this.currentCar = {} as Car;
@@ -172,14 +190,29 @@ export default class CarsList extends Vue {
 
     mounted() {
         this.retrieveCars();
+        window.setInterval( () => {
+            this.retrieveCars();
+        }, 10000 );
     }
 }
 </script>
 
-<style scoped>
-.list {
-    text-align: left;
-    max-width: 750px;
-    margin: auto;
+<style>
+.el-table .danger-row {
+    background: #ff9371;
+    /*border-spacing: 10cm;*/
 }
+
+.el-table .warning-row {
+    background: #ffe650;
+}
+
+.el-table .success-row {
+    background: #d1ffc1;
+}
+
+/*.el-table .header-row {*/
+/*    background: #d1ffc1;*/
+/*}*/
+
 </style>
