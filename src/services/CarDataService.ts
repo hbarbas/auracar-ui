@@ -1,6 +1,6 @@
 import http from "@/http-common";
 
-class TutorialDataService {
+class CarDataService {
   getAll() {
     return http.get( "/cars" );
   }
@@ -22,12 +22,12 @@ class TutorialDataService {
   }
 
   deleteAll() {
-    return http.delete( `/tutorials` );
+    return http.delete( `/cars` );
   }
 
-  findByTitle( title : string ) {
-    return http.get( `/tutorials?title=${ title }` );
+  findByRegistration( registration : string ) {
+    return http.get( `/cars?registrations=${ registration }` );
   }
 }
 
-export default new TutorialDataService();
+export default new CarDataService();

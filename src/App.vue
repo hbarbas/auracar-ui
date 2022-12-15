@@ -1,16 +1,22 @@
 <template>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <a href="#"
-               class="navbar-brand">bezKoder</a>
+        <nav class="navbar navbar-expand navbar-dark"
+             style="background-color: #000;">
+            <a class="navbar-brand"
+               href="#">
+                <img src="./assets/logo-auracar-01.png"
+                     width="200"
+                     height="35"
+                     alt="">
+            </a>
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="/tutorials"
-                       class="nav-link">Tutorials</a>
+                    <a href="/cars"
+                       class="nav-link">Listado</a>
                 </li>
                 <li class="nav-item">
                     <a href="/add"
-                       class="nav-link">Add</a>
+                       class="nav-link">Añadir</a>
                 </li>
             </div>
         </nav>
