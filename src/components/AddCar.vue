@@ -100,5 +100,6 @@ export default class AddCar extends Vue {
 .submit-form {
     max-width: 300px;
     margin: auto;
+    font-family: '微软雅黑', serif;
 }
 </style>

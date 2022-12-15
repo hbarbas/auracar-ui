@@ -1,8 +1,14 @@
 <template>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <a href="#"
-               class="navbar-brand">Auracar</a>
+        <nav class="navbar navbar-expand navbar-dark"
+             style="background-color: #000;">
+            <a class="navbar-brand"
+               href="#">
+                <img src="./assets/logo-auracar-01.png"
+                     width="200"
+                     height="35"
+                     alt="">
+            </a>
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a href="/cars"
