@@ -9,6 +9,10 @@
             label="ID">
         </el-table-column>
         <el-table-column
+            prop="adviser"
+            label="ASESOR">
+        </el-table-column>
+        <el-table-column
             prop="model"
             label="MODELO">
         </el-table-column>
