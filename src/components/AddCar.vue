@@ -1,6 +1,18 @@
 <template>
     <div class="submit-form">
         <div v-if="!submitted">
+
+            <div class="form-group">
+                <label for="modelo">ASESOR</label>
+                <input
+                    class="form-control"
+                    id="asesor"
+                    required
+                    v-model="car.adviser"
+                    name="asesor"
+                />
+            </div>
+
             <div class="form-group">
                 <label for="modelo">MODELO</label>
                 <input
@@ -64,6 +76,7 @@ export default class AddCar extends Vue {
         exitTime : "",
         countdown : "",
         active : true,
+        adviser : "",
     };
     private submitted : boolean = false;
 
@@ -77,6 +90,7 @@ export default class AddCar extends Vue {
             exitTime : this.car.exitTime,
             countdown : this.car.countdown,
             active : this.car.active,
+            adviser : this.car.adviser,
         };
         CarDataService.create( data )
         .then( ( response ) => {
